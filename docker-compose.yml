@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: devops-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: S@kshi1969
+      POSTGRES_DB: Devops_Assignment
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - devops_network
+
+  backend:
+    build: .
+    container_name: devops-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: S@kshi1969
+      DB_NAME: Devops_Assignment
+    networks:
+      - devops_network
+
+networks:
+  devops_network:
+    driver: bridge
