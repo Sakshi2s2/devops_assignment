@@ -1,7 +1,7 @@
 DevOps Technical Assignment:
 
 Introduction:
-This repository contains the solution for the DevOps Technical Assignment at Syvora. The goal of this project is to demonstrate proficiency in deploying and maintaining infrastructure, and the ability to solve technical problems in a critical and thoughtful manner.
+The goal of this project is to demonstrate proficiency in deploying and maintaining infrastructure, and the ability to solve technical problems in a critical and thoughtful manner.
 
 The assignment includes:
 A Node.js/Python backend service with CRUD APIs
@@ -42,8 +42,7 @@ A Docker Hub account (for pushing the Docker image).
 
 Local Development:
 Clone this repository-
-git clone https://github.com/yourusername/devops-assignment.git
-cd devops-assignment
+git clone https://github.com/sakshi2s2/devops-assignment.git
 
 Build and run the application using Docker Compose-
 docker-compose up --build
