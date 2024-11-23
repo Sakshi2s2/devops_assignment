@@ -10,27 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from the repository
+      # Step 1: Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Docker Buildx
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      # Step 3: Log in to Docker Hub using credentials from GitHub secrets
+      # Step 2: Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}  # Docker Hub username from GitHub secrets
-          password: ${{ secrets.DOCKER_PASSWORD }}  # Docker Hub password or personal access token from GitHub secrets
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: https://index.docker.io/v1/  # Explicitly specify Docker Hub
 
-      # Step 4: Build the Docker image
+      # Step 3: Build the Docker image
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest .
 
-      # Step 5: Push the Docker image to Docker Hub
+      # Step 4: Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
